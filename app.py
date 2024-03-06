@@ -5,7 +5,6 @@ from security import authenticate
 from resources.user import UserRegister
 from resources.item import Item, Itemlist
 from resources.store import Store,StoreList
-from db import db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -15,17 +14,6 @@ api = Api(app)
 # Configure JWT manager
 app.config['JWT_SECRET_KEY'] = 'jose'  # Change this to your secret key
 jwt = JWTManager(app)
-
-# Define a flag to track whether tables have been created
-tables_created = False
-
-# Function to create tables before the first request
-@app.before_request
-def create_tables_if_needed():
-    global tables_created
-    if not tables_created:
-        db.create_all()
-        tables_created = True
 
 # Login route
 @app.route('/login', methods=['POST'])
