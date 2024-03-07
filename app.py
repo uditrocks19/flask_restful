@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request
 from flask_restful import Api
 from flask_jwt_extended import JWTManager, create_access_token
@@ -8,7 +9,7 @@ from resources.store import Store,StoreList
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = r'sqlite:///C:\Users\uditi\PycharmProjects\flask-api\code\data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL',r'sqlite:///C:\Users\uditi\PycharmProjects\flask-api\code\data.db')
 api = Api(app)
 
 # Configure JWT manager
