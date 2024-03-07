@@ -9,7 +9,7 @@ from resources.store import Store,StoreList
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL',r'sqlite:///C:\Users\uditi\PycharmProjects\flask-api\code\data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 api = Api(app)
 
 # Configure JWT manager
